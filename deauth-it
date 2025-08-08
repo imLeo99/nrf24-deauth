@@ -1,7 +1,6 @@
 /*
-  ESP32 NRF24 RF Noise Transmitter
-  --------------------------------
-  This sketch configures an ESP32 with an NRF24L01 to transmit a constant
+
+  This sketch configures an E#### with an N##### to transmit a constant
   RF carrier and switch frequencies rapidly across the 2.4 GHz band.
 
   ⚠️ WARNING: ILLEGAL USE MAY RESULT IN CRIMINAL CHARGES
