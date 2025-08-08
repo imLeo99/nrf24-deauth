@@ -1,3 +1,25 @@
+/*
+  ESP32 NRF24 RF Noise Transmitter
+  --------------------------------
+  This sketch configures an ESP32 with an NRF24L01 to transmit a constant
+  RF carrier and switch frequencies rapidly across the 2.4 GHz band.
+
+  ⚠️ WARNING: ILLEGAL USE MAY RESULT IN CRIMINAL CHARGES
+
+  This project is strictly for educational and controlled RF testing use only.
+  DO NOT use this code in public or near other wireless devices.
+  Unauthorized RF interference is illegal in many countries and may result in:
+    - Fines
+    - Criminal prosecution
+    - Confiscation of equipment
+
+  Only test in an isolated or shielded environment where you have full legal control.
+
+  YOU ARE RESPONSIBLE FOR HOW YOU USE THIS CODE.
+*/
+
+
+
 #include "RF24.h"
 #include <SPI.h>
 #include "esp_bt.h"
