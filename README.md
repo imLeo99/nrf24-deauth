@@ -16,18 +16,18 @@ In many countries, **deliberate RF interference is illegal** and may lead to:
 
 Only run this in **controlled, private environments** (e.g. a Faraday cage or RF-isolated lab). **You are solely responsible** for how you use this code.
 
-## 🧪 Use case
+## Use case
 
 - RF interference testing
 - NRF24 resilience testing
 - Embedded experimentation
 
-## 🔧 Hardware
+## Hardware
 
 - E?@?#?# (any variant)
 - N?@?#??#@? module
 - Proper power regulation for N@?@#?
 
-## 📄 License
+## License
 
 MIT License — but **abuse of this code is not endorsed or supported.**
