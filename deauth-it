@@ -1,0 +1,63 @@
+#include "RF24.h"
+#include <SPI.h>
+#include "esp_bt.h"
+#include "esp_wifi.h"
+
+SPIClass *hp = nullptr;  
+RF24 radio(16, 15, 16000000);  // HSPI: CE = 16, CS = 15, SPI Speed = 16MHz
+uint8_t address[6] = "NOISE";  // TX address to send random noise
+
+void randomizeChannel() {
+  int ch = random(1, 79);
+  radio.setChannel(ch);
+  delayMicroseconds(20);  // Faster interference switching
+}
+
+void stopWiFi() {
+  wifi_mode_t mode;
+  if (esp_wifi_get_mode(&mode) == ESP_OK && mode != WIFI_MODE_NULL) {
+    esp_err_t err = esp_wifi_stop();
+    if (err != ESP_OK) {
+      Serial.printf("Wi-Fi stop failed: 0x%x\n", err);
+    }
+    err = esp_wifi_deinit();
+    if (err != ESP_OK) {
+      Serial.printf("Wi-Fi deinit failed: 0x%x\n", err);
+    }
+    err = esp_wifi_disconnect();
+    if (err != ESP_OK) {
+      Serial.printf("Wi-Fi disconnect failed: 0x%x\n", err);
+    }
+  } else {
+    Serial.println("Wi-Fi already stopped.");
+  }
+}
+
+void setup() {
+  Serial.begin(115200);
+
+  stopWiFi();
+  esp_bt_controller_deinit(); // Disable Bluetooth stack
+
+  hp = new SPIClass(HSPI);
+  hp->begin(14, 12, 13, 15); // HSPI pins
+
+  if (radio.begin(hp)) {
+    Serial.println("HSPI NRF24 Module Started!");
+    radio.setAutoAck(true);
+    radio.enableDynamicPayloads();
+    radio.setRetries(3, 5);
+    radio.setPALevel(RF24_PA_MAX);  // Set max power
+    radio.setDataRate(RF24_2MBPS);
+    radio.setCRCLength(RF24_CRC_16);
+    radio.openWritingPipe(address);
+    radio.startConstCarrier(RF24_PA_MAX, random(1, 79));  
+  } else {
+    Serial.println("HSPI NRF24 Module Failed!");
+  }
+}
+
+void loop() {
+  randomizeChannel();
+}
+
