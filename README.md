@@ -1,4 +1,4 @@
-# ESP32 NRF24 RF Noise Transmitter
+# E### N#### RF Noise Transmitter
 
 This project uses an **E####** and an **N#######1** module to generate intentional radio frequency (RF) noise by rapidly switching channels and transmitting a constant carrier signal. It is intended strictly for **educational and RF testing purposes** — for example, 
 testing how N#####-based devices perform in interference-heavy environments.
